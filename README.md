@@ -1,5 +1,8 @@
 
 CONSULTAS MULTITABLAS (composición interna)
+
+![Alt text](drawSQL-jardineria-export-2023-11-09.png)
+
 1. Obten un listado con el nombre de cada cliente y el nombre y apellido de su representante de ventas.
 
 	SELECT 
@@ -105,6 +108,10 @@ CONSULTAS MULTITABLAS (composición interna)
 
 
 
+-------------------------------------------------------------------
+
+
+1. Devuelve un listado con el codigo de oficina y la ciudad donde hay oficinas.
 
 
 
