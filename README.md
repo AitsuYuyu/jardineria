@@ -111,7 +111,46 @@ CONSULTAS MULTITABLAS (composición interna)
 -------------------------------------------------------------------
 
 
-1. Devuelve un listado con el codigo de oficina y la ciudad donde hay oficinas.
+sub consultas con 
+1. devuelve el nombre del cliente con mayor limite de credito.
+
+SELECT * FROM cliente ORDER BY nombre_cliente ASC; 
+
+
+
+SELECT nombre_cliente  AS cliente, limite_credito AS credito FROM cliente WHERE  limite_credito = (
+ SELECT MAX(limite_credito) FROM cliente
+);
+
+2. Devuelve un listado con la ciudad y el telefono de las oficinas de España.
+
+	SELECT ciudad, telefono 
+	FROM oficina
+	WHERE ciudad IN (
+	SELECT ciudad FROM oficina WHERE ciudad LIKE '%Madrid%');
+
+3. Devuelve un listado del nombre, apellidos y email de los empleados cuyo jefe tiene un codigo de jefe igual a 7.
+
+	SELECT nombre, apellido1, apellido2, email
+	FROM empleado
+	WHERE codigo_jefe IN (
+	SELECT codigo_jefe FROM empleado WHERE codigo_jefe LIKE 7 ); 
+
+
+4. Devuelve el nombre del puesto, nombre, apellidos, email del jefe de la empresa.
+
+	SELECT puesto, nombre, apellido1, apellido2, email 
+	FROM empleado
+	WHERE puesto IN (
+		SELECT puesto FROM empleado WHERE puesto LIKE '%Director general%'
+	);
+
+5. Devuelve un listado con el nombre, apellidos y puesto de aquellos empleados que no sean representantes de ventas.
+
+	SELECT nombre, apellido1, apellido2, puesto
+	FROM empleado
+
+	
 
 
 
