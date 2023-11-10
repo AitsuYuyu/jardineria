@@ -87,7 +87,7 @@ CONSULTAS MULTITABLAS (composición interna)
 	LEFT JOIN empleado e2 ON e1.codigo_jefe = e2.codigo_empleado
 	LEFT JOIN empleado e3 ON e2.codigo_jefe = e3.codigo_empleado;
 
-10. devuelve el nombre de los clientes a los que no se les ha entregado a tiempo un pedico
+10. devuelve el nombre de los clientes a los que no se les ha entregado a tiempo un pedido
 
 	SELECT DISTINCT c.nombre_cliente AS NombreCliente
 	FROM cliente c
@@ -167,24 +167,33 @@ WHERE puesto <> 'Representante Ventas';
 
 8. Devuelve un listado con el codigo de cliente  de aquellos clientes que realizaron algun pago en 2008. Tenga en cuenta que debera eliminar aquellos codigos de cliente que aparezcan repetidos. Resuelva la consulta:
 
-	-Utilizando la funcion YEAR de MYSQL 
-	-Utilizando la función DATE_FORMAT de MySQL
-	-Sin utiliar ninguna de las funiones anteriores
+- Utilizando la funcion YEAR de MYSQL 
+- Utilizando la función DATE_FORMAT de MySQL
+- Sin utiliar ninguna de las funiones anteriores
 
 
-SELECT DISTINCT codigo_cliente AS clienteCode
-FROM cliente
-WHERE codigo_cliente IN (
-	SELECT codigo_cliente FROM cliente WHERE codigo_cliente LIKE 2008
-);
+	SELECT DISTINCT codigo_cliente AS clienteCode
+	FROM cliente
+	WHERE codigo_cliente IN (
+		SELECT codigo_cliente FROM cliente WHERE codigo_cliente LIKE 2008
+	);
 
+9. Devuelve un listado con el codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
 
+	SELECT codigo_pedido, codigo_cliente, fecha_esperada, estado
+	FROM pedido
+	WHERE fecha_entrega (
+		SELECT fecha_entrega
+	);
 
+10. Devuelve un listado con el codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos cuya entrega ha sudo al menos dos dias antes de la fecha esperada
 
+- Utilizando la funcion ADDDATE de MySQL
+- ultilizando la funcion DATE DIFF de MySQL ¿Sería posible resolver esta consulta utilizando el operador de suma+ o resta -?
 
+11. Devuleve un listado de todos los pedidos que fuerin rechazados en 2000.
 
-
-
+12. devuelve un listado de todos los pedidos que han sido entregados en el mes de enero de cualquier año.
 
 
 
