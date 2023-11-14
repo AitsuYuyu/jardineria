@@ -172,11 +172,10 @@ WHERE puesto <> 'Representante Ventas';
 - Sin utiliar ninguna de las funiones anteriores
 
 
-	SELECT DISTINCT codigo_cliente AS clienteCode
-	FROM cliente
-	WHERE codigo_cliente IN (
-		SELECT codigo_cliente FROM cliente WHERE codigo_cliente LIKE 2008
-	);
+SELECT DISTINCT codigo_cliente, fecha_pago 
+FROM pago
+WHERE YEAR(fecha_pago) = 2008;
+
 
 9. Devuelve un listado con el codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo.
 
@@ -185,6 +184,12 @@ WHERE puesto <> 'Representante Ventas';
 	WHERE fecha_entrega (
 		SELECT fecha_entrega
 	);
+
+	SELECT codigo_pedido, codigo_cliente, fecha_esperada, fecha_entrega
+	FROM pedido
+	WHERE  fecha_entrega IS NULL;
+
+
 
 10. Devuelve un listado con el codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos cuya entrega ha sudo al menos dos dias antes de la fecha esperada
 
