@@ -242,19 +242,77 @@ WHERE YEAR(fecha_pago) = 2008;
 ### 4. muestra el nombre del producto y la cantidad total de productos por gama.
 
 
-	SELECT SUBSTRING(p.gama, 1, 1) + ': ' + p.nombre AS columnName, COUNT(*) AS total
+	SELECT SUBSTRING(p.gama, 1, 1) AS primeraLetraGama, COUNT(*) AS totalProductos
 	FROM producto p
 	INNER JOIN gama_producto g ON p.gama = g.gama
-	GROUP BY SUBSTRING(p.gama, 1, 1), p.nombre;
+	GROUP BY SUBSTRING(p.gama, 1, 1);
+
+
+### 5. muestra el nombre de cada cliente y la cantidad total de pedidos que ha realizado. 
+
+	SELECT c.nombre_cliente, COUNT(p.codigo_pedido) AS total_pedidos
+	FROM cliente c
+	LEFT JOIN pedido p ON c.codigo_cliente = p.codigo_cliente
+	GROUP BY c.nombre_cliente;
+
+
+# Video 2 (5 tips MySQL WHERE)
+
+### 1.
+
+
+
+### 2.
+
+
+
+### 3.
+
+
+
+### 4.
 
 
 ### 5.
 
 
+# Video 3(5 tips MySQL UPDATE)
 
-# Video 2 (5 tips MySQL WHERE)
+### 1.
 
 
+
+### 2.
+
+
+
+### 3.
+
+
+
+### 4.
+
+
+### 5.
+
+# Video 4 ( 5 tips MySQL SELECT)
+
+### 1.
+
+
+
+### 2.
+
+
+
+### 3.
+
+
+
+### 4.
+
+
+### 5.
 
 
 
