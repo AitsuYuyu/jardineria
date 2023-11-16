@@ -202,8 +202,61 @@ WHERE YEAR(fecha_pago) = 2008;
 
 
 
+## ------------------------------------------------------------------------
+# Consultas referentes a los tips MySQL
 
+## Video 1 (5 tips MySQL GROUP BY)
+
+
+### 1. cuenta el número total de empleados en cada oficina, mostrando el código de la oficina, el país al que pertenece y la cantidad total de empleados en esa oficina. <BR>
 	
+	
+	SELECT o.codigo_oficina, o.pais, COUNT(*) AS TotalEmpleados 
+	FROM empleado e 
+	INNER JOIN oficina o ON e.codigo_oficina = o.codigo_oficina 
+	GROUP BY o.codigo_oficina, o.pais; 
+	
+
+
+### 2. busca la cantidad mínima de crédito límite entre los clientes cuyos nombres de contacto comienzan con la letra 'A'. Además, muestra solo aquellos clientes cuyos nombres de contacto comienzan con 'A' y tienen más de 2 pedidos realizados. <br>
+
+
+	SELECT c.nombre_cliente, MIN(c.limite_credito) AS MinLimiteCredito
+	FROM cliente c
+	INNER JOIN pedido p ON c.codigo_cliente = p.codigo_cliente
+	WHERE SUBSTRING(c.nombre_contacto, 1, 1) = 'A'
+	GROUP BY c.nombre_cliente
+	HAVING COUNT(*) > 2;
+
+
+
+### 3. Busca contar el número total de productos en cada gama, mostrando la primera letra de cada gama y la cantidad total de productos en esa gama.<br>
+
+
+	SELECT SUBSTRING(p.gama, 1, 1) AS gamaLetter, COUNT(*) AS totalProductos
+	FROM producto p
+	INNER JOIN gama_producto g ON p.gama = g.gama
+	GROUP BY SUBSTRING(p.gama, 1, 1);
+
+
+### 4. muestra el nombre del producto y la cantidad total de productos por gama.
+
+
+	SELECT SUBSTRING(p.gama, 1, 1) + ': ' + p.nombre AS columnName, COUNT(*) AS total
+	FROM producto p
+	INNER JOIN gama_producto g ON p.gama = g.gama
+	GROUP BY SUBSTRING(p.gama, 1, 1), p.nombre;
+
+
+### 5.
+
+
+
+# Video 2 (5 tips MySQL WHERE)
+
+
+
+
 
  
 
