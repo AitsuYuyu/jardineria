@@ -258,15 +258,28 @@ WHERE YEAR(fecha_pago) = 2008;
 
 # Video 2 (5 tips MySQL WHERE)
 
-### 1.
+### 1. IN
+
+SELECT *
+FROM cliente
+WHERE region IN ('Madrid');
 
 
 
-### 2.
+### 2. subConsulta dentro del  WHERE
 
+	SELECT *
+	FROM producto
+	WHERE (
+		SELECT SUM(precio_venta) FROM producto
+	) > 5000;
 
+### 3. Expresiones Regulares
 
-### 3.
+	SELECT *
+	FROM cliente
+	WHERE nombre_cliente LIKE '%s%';
+	
 
 
 
@@ -278,45 +291,69 @@ WHERE YEAR(fecha_pago) = 2008;
 
 # Video 3(5 tips MySQL UPDATE)
 
-### 1.
+### 1 a varias partes
 
+	UPDATE clientes
+	SET pais = pais + 'no';
 
+### 2. por default? defetco pues
 
-### 2.
+	UPDATE clientes
+	SET pais = DEFAULT
 
+### 3.  usando subconsulta
 
+	UPDATE empleado
+	SET pueto = (
+		SELECT puesto FROM empleado WHERE codigo_empleado = 1
+	)
+	WHERE codigo_empleado = 2
 
-### 3.
+### 4.  usando los joins
 
+	UPDATE producto
+	SET gama = 'No gama'
+	FROM producto
+	RIGHT JOIN producto.gama = gama.gama;
 
+### 5. usando el json 
 
-### 4.
+	CREATE VIEW vista_json_data 
+	AS SELECT
+		CAST(imagen AS JSON) as imagen_json
+	FROM gama_producto;
 
-
-### 5.
 
 # Video 4 ( 5 tips MySQL SELECT)
 
-### 1.
+### 1.columnas de las tablas
+
+SELECT codigo_cliente as Cliente, forma_pago as Forma_de_Pago, total as Subtotal, 0.19 as Iva, (total*1.19) as Total 
+FROM pago;
+
+### 2. CASE
+
+SELECT nombre_cliente, CASE WHEN limite_credito < 50000 THEN 'Pobre' WHEN limite_credito>50000 THEN limite_credito END as estatus FROM cliente;
+
+### 3.SELECT EN EL SELECT
+
+SELECT DISTINCT p.codigo_pedido as Pedido_id, (  SELECT c.nombre_cliente FROM cliente c WHERE p.codigo_cliente = c.codigo_cliente) as cliente FROM pedido p;
+
+### 4.Consultas como tablas para consultar
+
+SELECT cliente, GROUP_CONCAT(Pedido_id) as Pedido_ids FROM  (SELECT DISTINCT p.codigo_pedido as Pedido_id, (  SELECT c.nombre_cliente FROM cliente c WHERE p.codigo_cliente = c.codigo_cliente) as cliente FROM pedido p) as tabla GROUP BY (cliente);
+
+### 5. VirtualId
+
+SELECT ROW_NUMBER() OVER (ORDER BY (SELECT nombre_cliente)) as N°, nombre_cliente FROM cliente ORDER BY nombre_cliente;
 
 
 
-### 2.
 
 
 
-### 3.
 
 
-
-### 4.
-
-
-### 5.
-
-
-
- 
 
 
 
