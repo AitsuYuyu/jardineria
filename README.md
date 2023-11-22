@@ -334,8 +334,21 @@
 
 #### 4. Los clientes cuyo límite de crédito sea mayor que los pagos que haya realizado. (Sin utilizar `INNER JOIN`).
 
-	
+	SELECT c.codigo_cliente, c.limite_credito, p.total
+	FROM cliente c
+	JOIN pago p ON c.codigo_cliente = p.codigo_cliente
+	WHERE c.limite_credito > p.total
+	LIMIT 1;
+
+
 #### 5. Devuelve el producto que más unidades tiene en stock.
+
+	SELECT codigo_producto, cantidad_en_stock
+	FROM producto 
+	GROUP BY codigo_producto
+	ORDER BY SUM(cantidad_en_stock) DESC
+	LIMIT 1;
+
 #### 6. Devuelve el producto que menos unidades tiene en stock.
 #### 7. Devuelve el nombre, los apellidos y el email de los empleados que están a cargo de **Alberto Soria**.
 
