@@ -3,7 +3,6 @@
 
 ![Alt text](drawSQL-jardineria-export-2023-11-09.png)
 
-<br><br>-------------------------------------------------------------------------------------<br><br>
 
 ![Alt text](consultas.png)
 
@@ -112,14 +111,80 @@
 
 
 
--------------------------------------------------------------------
+### -----------------------------------------------------------------
 
-### 3ras consultas
+## 2das Consultas
+
+![img cosnsultas segunda parte](consultaspar2.png)
+
+#### 1. Devuelve un listado que muestre solamente los clientes que no han realizado ningun pago.
+
+	SELECT c.codigo_cliente, p.id_transaccion
+	FROM cliente c
+	LEFT JOIN pago p ON c.codigo_cliente = p.codigo_cliente
+	WHERE p.id_transaccion IS NULL;
+
+#### 2. Devuelve un listado que muestre solamente los clientes que no han realizado ningun pedido.
+
+	SELECT  c.codigo_cliente, p.codigo_pedido
+	FROM cliente c
+	LEFT JOIN pedido p ON c.codigo_cliente = p.codigo_pedido
+	WHERE p.codigo_pedido IS NULL;
+
+#### 3.  Devuelve un listado que muestre los clientes que no han realizado ningun pago y los que no han realizado ningun pedido.
+
+	SELECT c.codigo_cliente, p.id_transaccion, pe.codigo_pedido
+	FROM cliente c
+	LEFT JOIN pago p ON c.codigo_cliente = p.codigo_cliente
+	LEFT JOIN pedido pe ON c.codigo_cliente = pe.codigo_pedido
+	WHERE p.id_transaccion IS NULL AND pe.codigo_pedido IS NULL;
+
+#### 4. Devuelve un listado que muestre solamente los empleados que no tienen una oficina asociada.
+
+	SELECT e.codigo_empleado, e.codigo_oficina, o.codigo_oficina
+	FROM empleado e
+	LEFT JOIN oficina o ON e.codigo_oficina = o.codigo_oficina
+	WHERE e.codigo_oficina IS NULL;
+	
+
+#### 5. Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado
+
+	SELECT e.codigo_empleado, c.codigo_cliente, c.codigo_empleado_rep_ventas
+	FROM empleado e
+	LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_empleado_rep_ventas
+	WHERE c.codigo_cliente IS NULL;
+
+#### 6. Devuelve un listado que muestre solamente los empleados que no tienen un cliente asociado junto con los datos de una oficina donde trabaja
+
+	SELECT e.codigo_empleado, o.*
+	FROM empleado e
+	LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_empleado_rep_ventas
+	JOIN oficina o ON e.codigo_oficina = o.codigo_oficina
+	WHERE c.codigo_cliente IS NULL;
+
+#### 7. Devuelve un listado que muestre los empleados que no tienen una oficina asociada y los que no tienen un cliente asociado
+
+	SELECT e.codigo_empleado, c.codigo_cliente, o.codigo_oficina
+	FROM empleado e
+	LEFT JOIN oficina o ON e.codigo_oficina = o.codigo_oficina
+	LEFT JOIN cliente c ON e.codigo_empleado = c.codigo_empleado_rep_ventas
+	WHERE c.codigo_cliente IS NULL OR o.codigo_oficina IS NULL;
+
+#### 8. Devuelve un listado de los productos que nunca han aparecido en un pedido
+```sql
+	SELECT pr.codigo_producto
+	FROM producto pr
+	LEFT JOIN detalle_pedido dp ON pr.codigo_producto = dp.codigo_producto 
+	WHERE  dp.codigo_producto IS NULL;
+```
+
+
+## 3ras consultas
 
 ![img de las consultas en terera posicion](consultas3.png)
 
 
-sub consultas con 
+## sub consultas con 
 #### 1. devuelve el nombre del cliente con mayor limite de credito.
 
 	SELECT nombre_cliente  AS cliente, limite_credito AS credito FROM cliente WHERE  limite_credito = (
