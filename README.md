@@ -310,7 +310,17 @@
 
 #### 1. Devuelve el nombre del cliente con mayor límite de crédito.
 
+	SELECT nombre_cliente, limite_credito
+	FROM cliente 
+	WHERE limite_credito = (SELECT MAX(limite_credito) FROM cliente);
+
+
+
 #### 2. Devuelve el nombre del producto que tenga el precio de venta más caro.
+
+	SELECT
+	FROM producto
+
 #### 3. Devuelve el nombre del producto del que se han vendido más unidades. (Tenga en cuenta que tendrá que calcular cuál es el número total de unidades que se han vendido de cada producto a partir de los datos de la tabla `detalle_pedido`)
 #### 4. Los clientes cuyo límite de crédito sea mayor que los pagos que haya realizado. (Sin utilizar `INNER JOIN`).
 #### 5. Devuelve el producto que más unidades tiene en stock.
