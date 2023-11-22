@@ -318,8 +318,9 @@
 
 #### 2. Devuelve el nombre del producto que tenga el precio de venta más caro.
 
-	SELECT
+	SELECT nombre, precio_venta
 	FROM producto
+	WHERE precio_venta = (SELECT MAX(precio_venta) FROM producto);
 
 #### 3. Devuelve el nombre del producto del que se han vendido más unidades. (Tenga en cuenta que tendrá que calcular cuál es el número total de unidades que se han vendido de cada producto a partir de los datos de la tabla `detalle_pedido`)
 #### 4. Los clientes cuyo límite de crédito sea mayor que los pagos que haya realizado. (Sin utilizar `INNER JOIN`).
