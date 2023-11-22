@@ -376,7 +376,11 @@
 #### 2. Devuelve el nombre del producto que tenga el precio de venta más caro.
 #### 3. Devuelve el producto que menos unidades tiene en stock.
 
-#### 1.4.8.3 Subconsultas con IN y NOT IN
+
+
+## 1.4.8.3 Subconsultas con IN y NOT IN
+
+
 
 #### 1. Devuelve el nombre, apellido1 y cargo de los empleados que no representen a ningún cliente.
 #### 2. Devuelve un listado que muestre solamente los clientes que no han realizado ningún pago.
@@ -386,7 +390,12 @@
 #### 6. Devuelve las oficinas donde **no trabajan** ninguno de los empleados que hayan sido los representantes de ventas de algún cliente que haya realizado la compra de algún producto de la gama `Frutales`.
 #### 7. Devuelve un listado con los clientes que han realizado algún pedido pero no han realizado ningún pago.
 
-#### 1.4.8.4 Subconsultas con EXISTS y NOT EXISTS
+
+
+
+## 1.4.8.4 Subconsultas con EXISTS y NOT EXISTS
+
+
 
 #### 1. Devuelve un listado que muestre solamente los clientes que no han realizado ningún pago.
 #### 2. Devuelve un listado que muestre solamente los clientes que sí han realizado algún pago.
