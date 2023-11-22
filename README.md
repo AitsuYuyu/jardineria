@@ -302,7 +302,7 @@
 
 ## ------------------------------------------------------------------------
 
-### 4tos y ultimas consultas
+## 4tos y ultimas consultas
 
 ### 1.4.8 Subconsultas
 
@@ -346,13 +346,31 @@
 	SELECT codigo_producto, cantidad_en_stock
 	FROM producto 
 	GROUP BY codigo_producto
-	ORDER BY SUM(cantidad_en_stock) DESC
+	ORDER BY MAX(cantidad_en_stock) DESC
 	LIMIT 1;
 
 #### 6. Devuelve el producto que menos unidades tiene en stock.
+
+	SELECT cantidad_en_stock
+	FROM producto
+	WHERE cantidad_en_stock =(SELECT MIN(cantidad_en_stock) FROM producto);
+
 #### 7. Devuelve el nombre, los apellidos y el email de los empleados que están a cargo de **Alberto Soria**.
 
-#### 1.4.8.2 Subconsultas con ALL y ANY
+
+	SELECT nombre, apellido1, apellido2, email
+	FROM empleado 
+	WHERE nombre = 'Alberto';
+
+
+
+
+
+
+## 1.4.8.2 Subconsultas con ALL y ANY
+
+
+
 
 #### 1. Devuelve el nombre del cliente con mayor límite de crédito.
 #### 2. Devuelve el nombre del producto que tenga el precio de venta más caro.
