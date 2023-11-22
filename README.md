@@ -171,12 +171,12 @@
 	WHERE c.codigo_cliente IS NULL OR o.codigo_oficina IS NULL;
 
 #### 8. Devuelve un listado de los productos que nunca han aparecido en un pedido
-```sql
+
 	SELECT pr.codigo_producto
 	FROM producto pr
 	LEFT JOIN detalle_pedido dp ON pr.codigo_producto = dp.codigo_producto 
 	WHERE  dp.codigo_producto IS NULL;
-```
+
 
 
 ## 3ras consultas
@@ -323,7 +323,18 @@
 	WHERE precio_venta = (SELECT MAX(precio_venta) FROM producto);
 
 #### 3. Devuelve el nombre del producto del que se han vendido más unidades. (Tenga en cuenta que tendrá que calcular cuál es el número total de unidades que se han vendido de cada producto a partir de los datos de la tabla `detalle_pedido`)
+
+	SELECT p.nombre
+	FROM producto p
+	JOIN detalle_pedido dp ON p.codigo_producto = dp.codigo_producto
+	GROUP BY p.nombre
+	ORDER BY SUM(dp.cantidad) DESC
+	LIMIT 1;
+
+
 #### 4. Los clientes cuyo límite de crédito sea mayor que los pagos que haya realizado. (Sin utilizar `INNER JOIN`).
+
+	
 #### 5. Devuelve el producto que más unidades tiene en stock.
 #### 6. Devuelve el producto que menos unidades tiene en stock.
 #### 7. Devuelve el nombre, los apellidos y el email de los empleados que están a cargo de **Alberto Soria**.
