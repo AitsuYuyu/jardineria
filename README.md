@@ -177,6 +177,14 @@
 	LEFT JOIN detalle_pedido dp ON pr.codigo_producto = dp.codigo_producto 
 	WHERE  dp.codigo_producto IS NULL;
 
+#### 9.
+
+
+#### 10.
+
+#### 11.
+
+#### 12. 
 
 
 ## 3ras consultas
@@ -185,6 +193,8 @@
 
 
 ## sub consultas con 
+
+
 #### 1. devuelve el nombre del cliente con mayor limite de credito.
 
 	SELECT nombre_cliente  AS cliente, limite_credito AS credito FROM cliente WHERE  limite_credito = (
@@ -276,8 +286,9 @@
 
 #### 10. Devuelve un listado con el codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos cuya entrega ha sudo al menos dos dias antes de la fecha esperada
 
-- Utilizando la funcion ADD DATE de MySQL
-- ultilizando la funcion DATE DIFF de MySQL ¿Sería posible resolver esta consulta utilizando el operador de suma+ o resta -?
+	- Utilizando la funcion ADD DATE de MySQL
+
+	- ultilizando la funcion DATE DIFF de MySQL ¿Sería posible resolver esta consulta utilizando el operador de suma+ o resta -?
 
 
 	SELECT codigo_pedido, codigo_cliente, fecha_esperada, fecha_entrega
@@ -298,6 +309,16 @@
 	SELECT fecha_pedido, estado
 	FROM pedido
 	WHERE MONTH(fecha_pedido) = 01 AND estado = 'Entregado';
+
+#### 13.
+
+#### 14.
+
+#### 15.
+
+#### 16.
+
+
 
 
 ## ------------------------------------------------------------------------
@@ -370,10 +391,12 @@
 ## 1.4.8.2 Subconsultas con ALL y ANY
 
 
-
-
 #### 1. Devuelve el nombre del cliente con mayor límite de crédito.
+
+
+
 #### 2. Devuelve el nombre del producto que tenga el precio de venta más caro.
+
 #### 3. Devuelve el producto que menos unidades tiene en stock.
 
 
